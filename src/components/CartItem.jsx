@@ -1,17 +1,25 @@
 import React from "react";
-import { addItem, removeItem ,minusItem} from "../redax/slices/catrSlice";
+import {
+  addItem,
+  removeItem,
+  minusItem,
+  updateTotalPrice,
+} from "../redax/slices/catrSlice";
 import { useDispatch } from "react-redux";
 
 const CartItem = ({ id, title, price, type, count, imageUrl ,size}) => {
   const dispatch = useDispatch();
   const onClickPlus = () => {
-    dispatch(addItem({ id }));
+    dispatch(addItem({ id }))
+     dispatch(updateTotalPrice());
   };
   const onClickMinus = () => {
     dispatch(minusItem(id));
+    dispatch(updateTotalPrice());
   };
   const onClickRemove = ()=>{ if(window.confirm('Вы точно хотите удалить товар?'))
     dispatch(removeItem(id));
+   dispatch(updateTotalPrice());
   }
   return (
     <div className="cart__item">
