@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { list } from "../components/Sort";
 import {
@@ -100,7 +100,9 @@ React.useEffect(() => {
       }
       return false;
     })
-    .map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+    .map((obj) => <Link key={obj.id} to={`/pizza/${obj.id}`} >
+      
+    <PizzaBlock  {...obj} /></Link>);
   const sceletons = [...new Array(6)].map((_, index) => (
     <Skeleton key={index} />
   ));
