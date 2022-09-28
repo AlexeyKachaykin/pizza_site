@@ -6,8 +6,17 @@ import {
   updateTotalPrice,
 } from "../redax/slices/catrSlice";
 import { useDispatch } from "react-redux";
+type CartItemProps = {
+  id: string;
+  title: string;
+  price: number;
+  type: string;
+  count: number;
+  imageUrl: string;
+  size: number;
+}
 
-const CartItem = ({ id, title, price, type, count, imageUrl ,size}) => {
+const CartItem: React.FC<CartItemProps>= ({ id, title, price, type, count, imageUrl ,size}) => {
   const dispatch = useDispatch();
   const onClickPlus = () => {
     dispatch(addItem({ id }))

@@ -18,7 +18,7 @@ import PizzaBlock from "../components/PizzaBlock/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/skeleton";
 import { fetchPizzas, selectPizzaData } from "../redax/slices/pizzaSlice";
 
-const Home = () => {
+const Home:React.FC = () => {
   const isMounted = React.useRef(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -33,11 +33,11 @@ const Home = () => {
   
  
 
-  const onChangeCategory = (id) => {
+  const onChangeCategory = (id:number) => {
     dispatch(setCategoryId(id));
   };
-  const onChangePage = (number) => {
-    dispatch(setCurrentPage(number));
+  const onChangePage = (page:number) => {
+    dispatch(setCurrentPage(page));
   };
 
   
@@ -50,10 +50,12 @@ const Home = () => {
 
  
    
-      dispatch(fetchPizzas({ sortBy, order, category, search, currentPage }));
+    dispatch(
+      //@ts-ignore
+      fetchPizzas({ sortBy, order, category, search, currentPage }));
    
     window.scrollTo(0, 0);
-  };
+  };    
    React.useEffect(() => {
      if (isMounted.current) {
        const params = {
@@ -94,13 +96,13 @@ React.useEffect(() => {
     }
   }, []);
   const pizzas = items
-    .filter((obj) => {
+  /*   .filter((obj:any) => {
       if (obj.title.includes(searchValue)) {
         return true;
       }
       return false;
-    })
-    .map((obj) => <Link key={obj.id} to={`/pizza/${obj.id}`} >
+    }) */
+    .map((obj:any) => <Link key={obj.id} to={`/pizza/${obj.id}`} >
       
     <PizzaBlock  {...obj} /></Link>);
   const sceletons = [...new Array(6)].map((_, index) => (

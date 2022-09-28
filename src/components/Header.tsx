@@ -6,7 +6,7 @@ import { selectCart } from "../redax/slices/catrSlice";
 function Header() {
  const {pathname} = useLocation()
   const { items, totalPrice } = useSelector(selectCart);
-  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+  const totalCount = items.reduce((sum:number, item:any) => sum + item.count, 0);
   return (
     <div className="header">
       <div className="container">

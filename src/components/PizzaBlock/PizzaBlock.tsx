@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, selectCartItemById } from "../../redax/slices/catrSlice";
-const typeNames = ["тонкое","традиционное"];
+const typeNames = ["тонкое", "традиционное"];
+type PizzaBlockProps = {
+  id: string;
+  title: string;
+  price: number;
+  types: number[];
 
-function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
+  imageUrl: string;
+  sizes: number[];
+};
+const PizzaBlock: React.FC<PizzaBlockProps>= ({ id, title, price, imageUrl, sizes, types }) => {
   const dispatch = useDispatch();
   const cartItem = useSelector(selectCartItemById(id));
   const [activeType, setActiveType] = useState(0);
@@ -15,13 +23,13 @@ function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
       title,
 
       price,
-      imageUrl,                                                                         
+      imageUrl,
       type: typeNames[activeType],
-      size: sizes[activeSize] ,
+      size: sizes[activeSize],
     };
     dispatch(addItem(item));
   };
-  
+
   return (
     <div className="pizza-block-wrapper">
       <div className="pizza-block">
@@ -49,7 +57,7 @@ function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
                 className={sizes[activeSize] === sizeId ? "active" : ""}
                 key={index}
               >
-               
+
                 {sizeId} см.
               </li>
             ))}

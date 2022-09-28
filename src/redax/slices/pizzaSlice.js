@@ -8,7 +8,7 @@ export const fetchPizzas = createAsyncThunk(
      const { data } = await axios.get(
        `https://63236406bb2321cba919074a.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}&page=${currentPage}&limit=4${search} `
      );
-    console.log(thunkAPI);
+  
     return data;
   }
 );
