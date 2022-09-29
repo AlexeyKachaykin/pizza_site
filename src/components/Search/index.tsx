@@ -9,12 +9,14 @@ const Search = () => {
   const [value, setValue] = React.useState("");
 
   const inputRef = React.useRef<HTMLInputElement>(null);
+
   const updateSearchValue = React.useCallback(
     debounce((str:string) => {
       dispatch(setSearchValue(str));
     }, 250),
     []
   );
+
   const onClikClear = () => {
     dispatch(setSearchValue(""));
     setValue("");
@@ -22,10 +24,11 @@ const Search = () => {
     inputRef.current?.focus();
   };
 
-  const onChangeInput = (event:any) => {
+  const onChangeInput = (event:React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
     updateSearchValue(event.target.value);
   };
+  
   return (
     <div className={styles.root}>
       <svg

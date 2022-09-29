@@ -29,13 +29,14 @@ function Sort() {
     setOpen(false);
   };
   React.useEffect(() => {
-    const handeleClickOutside = (event:any) => {
-      if (!event.path.includes(sortRef.current)) {
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sortRef.current && !event.composedPath().includes(sortRef.current)) {
         setOpen(false);
       }
-    };
-    document.body.addEventListener("click", handeleClickOutside);
-    return () => document.body.removeEventListener("click", handeleClickOutside);
+    }
+    document.body.addEventListener("click", handleClickOutside);
+    return () => document.body.removeEventListener("click", handleClickOutside);
   }, []);
   return (
     <div ref={sortRef} className="sort">

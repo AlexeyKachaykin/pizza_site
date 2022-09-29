@@ -1,6 +1,6 @@
 type CategoriesProps = {
   value: number;
-  onChangeCategory: any;
+  onChangeCategory: (i:number)=>void;
 }
   
 const Categories: React.FC<CategoriesProps>= ({ value, onChangeCategory }) =>
@@ -14,7 +14,7 @@ const Categories: React.FC<CategoriesProps>= ({ value, onChangeCategory }) =>
     "Острые",
     "Закрытые",
   ];
-  const onClickCategory = (index:any) => {
+  const onClickCategory = (index:number) => {
     onChangeCategory(index);
   }
   return (
