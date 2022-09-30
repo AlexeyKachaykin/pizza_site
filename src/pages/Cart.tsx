@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import CartItemBlock from "../components/CartItem";
 
 import CatrEmpty from "../components/CatrEmpty";
-import { clearItems, selectCart } from "../redax/slices/catrSlice";
+import { selectCart } from "../redax/cart/selectors";
+import { clearItems } from "../redax/cart/slice";
+
+
 const Cart:React.FC = () => {
  
   const dispatch = useDispatch();

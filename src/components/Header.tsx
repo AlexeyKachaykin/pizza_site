@@ -2,8 +2,10 @@ import { Link, useLocation } from "react-router-dom";
 import Search from "./Search";
 import { useSelector } from "react-redux";
 import LogoSvg from "../assets/img/pizza-logo.svg";
-import { selectCart } from "../redax/slices/catrSlice";
+
 import React from "react";
+import { selectCart } from "../redax/cart/selectors";
+
 function Header() {
  const location = useLocation()
   const { items, totalPrice } = useSelector(selectCart);

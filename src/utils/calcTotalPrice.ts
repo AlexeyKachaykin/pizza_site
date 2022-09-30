@@ -1,4 +1,6 @@
-import { CartItem } from "../redax/slices/catrSlice";
+import { CartItem } from "../redax/cart/types";
+
+
 
 export const calcTotalPrice = (items:CartItem[]) => {
     return  items.reduce((sum, obj) => obj.price * obj.count + sum, 0);

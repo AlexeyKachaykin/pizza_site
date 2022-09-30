@@ -1,13 +1,9 @@
 import React from "react";
 import clsx from 'clsx'
-import {
-  addItem,
-  removeItem,
-  minusItem,
-  updateTotalPrice,
-  CartItem,
-} from "../redax/slices/catrSlice";
+
 import { useDispatch } from "react-redux";
+import { addItem, minusItem, removeItem, updateTotalPrice } from "../redax/cart/slice";
+import { CartItem } from "../redax/cart/types";
 type CartItemProps = {
   id: string;
   title: string;

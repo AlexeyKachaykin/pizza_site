@@ -1,3 +1,5 @@
+
+import { CartItem } from "../redax/cart/types";
 import { calcTotalPrice } from "./calcTotalPrice"
 
 export const getCartFromLS = () => {
@@ -6,7 +8,7 @@ export const getCartFromLS = () => {
     const totalPrice = calcTotalPrice(items);
     
         return {
-            items,
+            items: items as  CartItem[],
             totalPrice,
         }
     

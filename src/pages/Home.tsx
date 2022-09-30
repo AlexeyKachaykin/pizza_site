@@ -3,13 +3,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sortList } from "../components/Sort";
-import {
-  FilterSliceState,
-  selectFilter,
-  setCategoryId,
-  setCurrentPage,
-  setFilters
-} from "../redax/slices/filterSlice";
+
 import Pagination from "../components/Pagination";
 
 import qs from "qs";
@@ -17,8 +11,14 @@ import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/skeleton";
-import { fetchPizzas, SearchPizzaParams, selectPizzaData } from "../redax/slices/pizzaSlice";
+
 import { useAppDispatch } from "../redax/store";
+
+
+import { selectFilter } from "../redax/filter/selectors";
+import { setCategoryId, setCurrentPage } from "../redax/filter/slice";
+import { fetchPizzas } from "../redax/pizza/asynctAction";
+import { selectPizzaData } from "../redax/pizza/selectors";
 
 const Home:React.FC = () => {
   const isMounted = React.useRef(false);
