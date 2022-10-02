@@ -13,7 +13,7 @@ const Cart:React.FC = () => {
   
   
   const { totalPrice, items } = useSelector(selectCart);
- const totalCount = items.reduce((sum:number, item:any) => sum + item.count, 0);
+ const totalCount = items.reduce((sum:number, item) => sum + item.count, 0);
   const onClickClear = () => {
     if (window.confirm("Очистить корзину?"))
       dispatch(clearItems());
@@ -100,7 +100,7 @@ const Cart:React.FC = () => {
               </div>
             </div>
             <div className="content__items">
-              {items.map((item:any) => (
+              {items.map((item) => (
                 <CartItemBlock key={item.id} {...item} />
               ))}
             </div>

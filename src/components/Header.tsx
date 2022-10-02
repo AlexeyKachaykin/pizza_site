@@ -10,7 +10,7 @@ function Header() {
  const location = useLocation()
   const { items, totalPrice } = useSelector(selectCart);
   const isMounted=React.useRef(false)
-  const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
+  const totalCount = items.reduce((sum: number, item) => sum + item.count, 0);
   
   React.useEffect(() => {
     
@@ -26,8 +26,8 @@ function Header() {
           <div className="header__logo">
             <img width="38" src={LogoSvg} alt="Pizza logo" />
             <div>
-              <h1>React Pizza</h1>
-              <p>самая вкусная пицца во вселенной</p>
+              <h1> Pizzas Day</h1>
+              <p>самая вкусная пицца </p>
             </div>
           </div>
         </Link>

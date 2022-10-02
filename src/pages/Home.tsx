@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {  useSelector } from "react-redux";
 import { sortList } from "../components/Sort";
 
 import Pagination from "../components/Pagination";
@@ -16,9 +16,10 @@ import { useAppDispatch } from "../redax/store";
 
 
 import { selectFilter } from "../redax/filter/selectors";
-import { setCategoryId, setCurrentPage } from "../redax/filter/slice";
+import { setCategoryId, setCurrentPage, setFilters } from "../redax/filter/slice";
 import { fetchPizzas } from "../redax/pizza/asynctAction";
 import { selectPizzaData } from "../redax/pizza/selectors";
+import { SearchPizzaParams } from "../redax/pizza/types";
 
 const Home:React.FC = () => {
   const isMounted = React.useRef(false);
@@ -56,7 +57,7 @@ const Home:React.FC = () => {
    
     window.scrollTo(0, 0);
   };    
-/*     React.useEffect(() => {
+   React.useEffect(() => {
      if (isMounted.current) {
        const params = {
          categoryId: categoryId > 0 ? categoryId : null,
@@ -73,8 +74,7 @@ const Home:React.FC = () => {
      }
      
     
-  }, [categoryId, sort.sortProperty, currentPage]);  */
-
+  }, [categoryId, sort.sortProperty, currentPage]);  
 
 
   React.useEffect(() => {
@@ -85,7 +85,7 @@ const Home:React.FC = () => {
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
  
-/*  React.useEffect(() => {
+ React.useEffect(() => {
     if (window.location.search) {
       const params = (qs.parse(window.location.search.substring(1) )as unknown as SearchPizzaParams) ;
 
@@ -102,15 +102,10 @@ const Home:React.FC = () => {
       
    }
    isMounted.current=true
-  }, []);  */
+  }, []); 
   const pizzas = items
-  /*   .filter((obj:any) => {
-      if (obj.title.includes(searchValue)) {
-        return true;
-      }
-      return false;
-    }) */
-    .map((obj:any) => 
+ 
+    .map((obj) => 
       
     <PizzaBlock key={obj.id} {...obj} />);
   const sceletons = [...new Array(6)].map((_, index) => (

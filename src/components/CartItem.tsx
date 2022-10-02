@@ -1,5 +1,5 @@
 import React from "react";
-import clsx from 'clsx'
+
 
 import { useDispatch } from "react-redux";
 import { addItem, minusItem, removeItem, updateTotalPrice } from "../redax/cart/slice";
