@@ -25,7 +25,7 @@ const Home:React.FC = () => {
   const isMounted = React.useRef(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isSearch = React.useRef(false);
+ 
   const { categoryId, sort, currentPage, searchValue } =
     useSelector(selectFilter);
 
@@ -70,16 +70,25 @@ const Home:React.FC = () => {
        navigate(`/?${queryString}`);  
      }
      if (!window.location.search) {
-       dispatch(fetchPizzas({} as SearchPizzaParams));
+       
+       dispatch(fetchPizzas({
+         sortBy: "",
+         order: "",
+         category: "",
+         search: "",
+         currentPage: ""
+       } ));
+       
      }
-     
+      
     
-  }, [categoryId, sort.sortProperty, currentPage]);  
-
+   }, [categoryId, sort.sortProperty, searchValue, currentPage]);   
+ 
 
   React.useEffect(() => {
    
-      getPizzas();
+    getPizzas()
+     
     
     
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
@@ -87,22 +96,22 @@ const Home:React.FC = () => {
  
  React.useEffect(() => {
     if (window.location.search) {
-      const params = (qs.parse(window.location.search.substring(1) )as unknown as SearchPizzaParams) ;
+      const params = qs.parse(window.location.search.substring(1) )as unknown as SearchPizzaParams ;
 
       const sort = sortList.find((obj) => obj.sortProperty === params.sortBy);
 
       dispatch(setFilters({
         searchValue: params.search,
-        currentPage: Number( params.category),
-        categoryId: Number(params.currentPage),
+        currentPage: Number(params.currentPage),
+        categoryId: Number(params.category),
         sort: sort ||sortList[0]
 
 
       }));
-      
+       
    }
    isMounted.current=true
-  }, []); 
+  }, []);   
   const pizzas = items
  
     .map((obj) => 

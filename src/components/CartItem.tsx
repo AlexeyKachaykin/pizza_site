@@ -86,7 +86,7 @@ const CartItemBlock: React.FC<CartItemProps> = ({ id, title, price, type, count,
         </button>
       </div>
       <div className="cart__item-price">
-        <b>{price * count}₴</b>
+        <b>цена  : {price * count}₴</b>
       </div>
       <div className="cart__item-remove">
         <div

@@ -1,10 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Search from "./Search";
 import { useSelector } from "react-redux";
 import LogoSvg from "../assets/img/pizza-logo.svg";
 
 import React from "react";
 import { selectCart } from "../redax/cart/selectors";
+
 
 function Header() {
  const location = useLocation()
@@ -19,6 +20,7 @@ function Header() {
     }
     isMounted.current = true
   }, [items])
+
   return (
     <div className="header">
       <div className="container">
@@ -31,7 +33,8 @@ function Header() {
             </div>
           </div>
         </Link>
-        {location.pathname !== '/cart' && <Search />}
+       
+        {location.pathname ===   '/'  && <Search />}
         <div className="header__cart">
           {location.pathname !=='/cart'&&  (
           <Link to="/cart" className="button button--cart">
